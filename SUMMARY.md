@@ -1,8 +1,9 @@
 # Table of contents
 
-* [Portainer](README.md)
+* [Synology Notes](README.md)
 
 ## Container Manager
 
 * [Container Manager](container-manager/README.md)    
-    * [Some child page](container-manager/portainer.md)    
+    * [Portainer](container-manager/portainer.md)    
+    * [Shlink](container-manager/shlink.md)    
