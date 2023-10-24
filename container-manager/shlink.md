@@ -1,5 +1,6 @@
 # Shlink
 
+- **Container Manager**
 - Create new image from **shlinkio/shlink:stable**
 - Create new container **shlink**
     - Enable *auto-restart*
@@ -9,7 +10,7 @@
         - DEFAULT_DOMAIN=your.domain
         - IS_HTTPS_ENABLED=false
         - GEOLITE_LICENSE_KEY=yourkey
-        - If you need to use your NAS DBMS (e.g. MariaDB), remember to allow access from bridge subnet (i.e. 172.17.0.0) and add the following:
+        - If you need to use your NAS DBMS (e.g. MariaDB), remember to allow access from bridge subnet (i.e. 192.168.1.0) and add the following:
             - DB_DRIVER=mariadb
             - DB_USER=shlink_usr
             - DB_PASSWORD='yourpassword'
@@ -38,3 +39,8 @@ shlinkio/shlink:stable
 
 docker update --restart unless-stopped shlink
 ```
+
+## Assumptions
+
+- You have installed **Container Manager**
+- You know how to access to the DSM shell
