@@ -28,6 +28,7 @@
 version: '3'
 
 volumes:
+  cache:
   html:
 
 services:
@@ -35,6 +36,8 @@ services:
     image: redis:alpine
     container_name: nextcloud-cache
     restart: unless-stopped
+    volumes:
+      - cache:/data
     healthcheck:
      test: redis-cli ping || exit 1
 
@@ -121,6 +124,38 @@ secrets:
     file: smtp_password.txt
 
 ```
+
+### Variants
+
+#### MariaDB
+
+You can use of course the regular _Synology_ package for MariaDB.
+
+In this case just remove the **db** service/section in the **docker-compose.yml** file above and set accordingly MYSQL_HOST variable.
+
+#### Shared folder
+
+You can use a regular folder on your NAS.
+
+- Control Panel -> Shared Folders
+- Create new **nextcloud** shared folder
+- On tab *General*, check only "Hide this shared folder..."
+- Set permissions for **www-data** user/group (ID 82 in _alpine_ images) to that folder (e.g. `/volume1/nextcloud/data`)
+  ```shell
+  sudo chown 82:82 -R /volume1/nextcloud/data
+  sudo chmod 0770 -R /volume1/nextcloud/data
+  ``` 
+- Add the proper mapping to the app service in **docker-compose.yml**
+  ```yaml
+  app:
+    image: nextcloud:fpm-alpine
+    container_name: nextcloud-app
+    restart: unless-stopped
+    volumes:
+      - html:/var/www/html
+      - /volume1/nextcloud/data:/var/www/html/data:rw
+    # etc ...
+  ```
 
 ## References
 
