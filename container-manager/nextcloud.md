@@ -125,15 +125,13 @@ secrets:
 
 ```
 
-### Variants
-
-#### MariaDB
+### Variant: MariaDB on DSM
 
 You can use of course the regular _Synology_ package for MariaDB.
 
 In this case just remove the **db** service/section in the **docker-compose.yml** file above and set accordingly MYSQL_HOST variable.
 
-#### Shared folder
+### Variant: Shared folder on DSM
 
 You can use a regular folder on your NAS.
 
@@ -157,7 +155,49 @@ You can use a regular folder on your NAS.
     # etc ...
   ```
 
+## Migrate existing installation
+
+The following instructions are based on official documentation referenced here below and some practical experience. 
+
+1. Prepare a brand new stack of Nextcloud (i.e. **destination**), by also _adding the admin user_
+2. (opt?) Stop it
+3. From the source stack of Nextcloud
+   - Copy or move `html/config/config.php`
+   - Copy or move `html/data/`, and make sure user **www-data** has 0770 permissions
+   - Copy or move **DB**
+4. Start the destination again
+
+### Backup and restore MariaDB
+
+- Backup
+  ```shell  
+  mysqldump -u root -p{yourpassword} nextcloud > {dumpfile}
+  ```
+- Restore 
+  ```shell  
+  mysql --user root --password nextcloud < {dumpfile}
+  ```
+- Running commands from DSM shell
+  ```shell
+  sudo /volume1/@appstore/MariaDB10/usr/local/mariadb10/bin/mysql...   
+  ```  
+- Running commands from container
+  ```shell
+  sudo docker exec nextcloud-db sh -c "mysql..."   
+  ```  
+
+### Permissions on data folder
+
+- Data folder: `/var/www/html/data`
+- Owner: www-data/www-data
+- Permissions: 0770
+
+Depending of used architecture in containers, you should use **www-data** internal ID instead of user/group names.
+- Apache: 33
+- FPM/nginx: 82
+
 ## References
 
 - [Docker image of Nextcloud](https://github.com/nextcloud/docker)
 - [Synology: How to Install Nextcloud Using Docker](https://mariushosting.com/synology-how-to-install-nextcloud-using-docker/)
+- [Migrating to a different server](https://docs.nextcloud.com/server/latest/admin_manual/maintenance/migrating.html)
