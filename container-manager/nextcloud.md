@@ -196,6 +196,36 @@ Depending of used architecture in containers, you should use **www-data** intern
 - Apache: 33
 - FPM/nginx: 82
 
+## How to
+
+### Recover data when seems lost
+
+For some reason data could disappear but is still present on file system.
+
+Try to rescan files using the command `php occ files:scan --all`.
+
+### Fix errors when configuring SMTP
+
+- Double check the right settings (i.e. port 465); see https://support.google.com/mail/answer/7126229
+- (Google) Generate an app password for Nextcloud
+
+### Clear all logs
+
+- Set maintenance mode ON
+- Delete **data/nextcloud.log** file
+- Set maintenance OFF
+
+### Unblock a locked file
+
+If you get an HTTP 423 (file locked) error, you could fix as [documented](https://help.nextcloud.com/t/file-is-locked-how-to-unlock/1883).
+
+- Set maintenance mode ON
+- Clean the locks table **oc_file_locks**
+  ```sql
+  DELETE FROM oc_file_locks WHERE 1;
+  ```
+- Set maintenance OFF
+
 ## References
 
 - [Docker image of Nextcloud](https://github.com/nextcloud/docker)
