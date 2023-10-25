@@ -6,4 +6,5 @@
 
 * [Container Manager](container-manager/README.md)    
     * [Portainer](container-manager/portainer.md)    
-    * [Shlink](container-manager/shlink.md)    
+    * [Shlink](container-manager/shlink.md)
+    * [Nextcloud](container-manager/nextcloud.md)

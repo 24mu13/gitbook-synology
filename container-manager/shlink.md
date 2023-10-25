@@ -5,7 +5,7 @@
 - Create new container **shlink**
     - Enable *auto-restart*
     - *Ports Settings*:
-        - Set a local port for 8080, e.g. 8080 or 8888
+        - Set a local port for 8080, e.g. 8080 (yes, type it again)
     - *Environment*:
         - DEFAULT_DOMAIN=your.domain
         - IS_HTTPS_ENABLED=false
