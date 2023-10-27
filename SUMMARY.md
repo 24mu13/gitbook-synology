@@ -4,10 +4,10 @@
 
 ## Container Manager
 
-* [Container Manager](container-manager/README.md)    
-    * [Portainer](container-manager/portainer.md)    
-    * [Shlink](container-manager/shlink.md)
-    * [Nextcloud](container-manager/nextcloud.md)
+* [Applications](applications/README.md)    
+    * [Portainer](applications/portainer.md)    
+    * [Shlink](applications/shlink.md)
+    * [Nextcloud](applications/nextcloud.md)
 
 ## Storage
 
