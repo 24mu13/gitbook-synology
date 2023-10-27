@@ -9,6 +9,10 @@
     * [Shlink](container-manager/shlink.md)
     * [Nextcloud](container-manager/nextcloud.md)
 
+## Storage
+
+* [Migrate drives](migrate-drives.md)
+
 ## Appendix
 
 * [A. DSM CLI](dsm-cli.md)
