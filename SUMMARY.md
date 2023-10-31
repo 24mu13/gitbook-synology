@@ -8,6 +8,7 @@
     * [Portainer](applications/portainer.md)    
     * [Shlink](applications/shlink.md)
     * [Nextcloud](applications/nextcloud.md)
+    * [Home Assistant](applications/home-assistant.md)
 
 ## Storage
 
