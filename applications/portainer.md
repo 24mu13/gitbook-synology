@@ -1,5 +1,6 @@
 # Portainer
 
+- Create folder `/volume1/docker/portainer`
 - Execute on shell: `ln /var/run/docker.sock /volume1/docker/docker.sock -s`
 - **Container Manager**
 - Create new image from **portainer/portainer-ce:latest**
@@ -8,7 +9,7 @@
     - *Ports Settings*:
         - At least set one local port for 9000 on container, e.g. 9000 or 8080
     - *Volume Settings*:
-        - (/docker/portainer -> /data)
+        - /docker/portainer -> /data
         - /docker/docker.sock -> /var/run/docker.sock [^1]
 - Control Panel -> Login Portal -> Advanced -> **Reverse Proxy**
 - Create a new proxy for Portainer, e.g. https://your.domain -> http://192.168.1.1:9000
