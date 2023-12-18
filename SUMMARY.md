@@ -13,6 +13,7 @@
 ## Storage
 
 * [Migrate drives](migrate-drives.md)
+* [Share NFS folder](share-nfs-folder.md)
 
 ## Appendix
 
