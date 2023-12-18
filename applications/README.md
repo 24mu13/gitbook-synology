@@ -4,6 +4,20 @@ Container Manager unites status monitoring, container image management, and reso
 
 For more details see the [product page](https://www.synology.com/en-global/dsm/feature/container-manager).
 
+## Maintenance
+
+Updates on **containers** are automatically notified and handled by UI.
+
+## Update Project
+
+Projects updates are not handled by UI.
+
+To update a single project:
+
+- Project -> Select the project -> Action -> _Clean_
+- Image -> Select the image(s) related to that project -> _Delete_
+- Project -> Select the project -> Action -> _Build_
+
 ## Networking
 
 If you set Firewall, remember to open all the traffic for the private subnet used by _Container Manager_.
@@ -24,4 +38,3 @@ If you want to open the traffic for all subnet used typically by _Container Mana
 - Ping/nslookup another container in the same subnet: `nslookup anothercontainer`
 
 **Note**: manually install **bind9-dnsutils** package for _nslookup_ or **dnsutils-ping** for _ping_ if needed. 
-
