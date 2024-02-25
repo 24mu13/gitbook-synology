@@ -36,11 +36,41 @@ so the commands below are simply based on this last one.
     mdadm --grow --force --raid-devices=1 /dev/md0
     ```
 
-## Convert ext4 to btrfs (TODO)
+## Convert ext4 to btrfs
 
-The official guide does not make any sense.
+At the time being I didn't manage to convert an ext4 drive entirely to btrfs. 
+Feel free to raise a pull-request for any suggestion/idea.
 
-See instead: https://www.lffl.org/2021/02/guida-conversione-ext-btrfs.html
+### Backup & restore (entire system)
+
+**Note**: this procedure is only theoretical, didn't worked!
+
+- Backup the entire system to C2
+- Power off and replace the old ext4 with a spare new drive
+- Start the NAS and delete the old volume, create the new one with btrfs
+- Restore the system (took 5 days for 2TB, e.g.)
+
+### In-place conversion
+
+Ideally this should be the best & fastest option.
+
+- Plug the ext4 drive into a Linux system with **mdadm** package installed [^2]
+- Get the ext4 partition name, i.e. using **partitionmanager** (e.g. `/dev/vg1000/lv`) 
+- `sudo e2fsck -fvy /dev/vg1000/lv`
+- `sudo btrfs-convert /dev/vg1000/lv`
+- (Optional) remove the ext2 backup image & balance, see documentation
+
+Unfortunately at the time being, you get the following error, most probably because of a [bug](https://www.spinics.net/lists/linux-btrfs/msg142605.html) on large size partitions..
+
+```
+[...]
+Create btrfs metadata
+ERROR: failed to copy ext2 inode 12: -95
+ERROR: error during copy_inodes -95
+WARNING: error during conversion, the original filesystem is not modified
+```
+
+See also: [btrfs-convert](https://btrfs.readthedocs.io/en/latest/Convert.html)
 
 ## References
 
@@ -48,5 +78,6 @@ See instead: https://www.lffl.org/2021/02/guida-conversione-ext-btrfs.html
 - [Can I reduce the number of drives in an existing storage pool or replace the drives with smaller capacity ones?](https://kb.synology.com/en-br/DSM/tutorial/Reduce_RAID_drives)
 - [How do I change an ext4 volume to a Btrfs volume?](https://kb.synology.com/en-my/DSM/tutorial/How_to_change_from_ext4_volume_to_btrfs_volume)
 
+[^1]: Setting a bigger number (e.g. 64K) should make the process faster but you could encounter an error like `No space left on target`
 
-[^1]: Setting a bigger number (e.g. 64K) should make the process faster but you could encounter an error like `No space left on target` 
+[^2]: Even if available on [optware](https://github.com/Entware/Entware/wiki/Install-on-Synology-NAS) to be used directly inside the NAS, the package **mdadm** does not contain the _convert_ command!
