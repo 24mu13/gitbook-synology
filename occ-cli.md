@@ -27,3 +27,8 @@ docker exec --user www-data nextcloud-app php occ <ommand here>
   ```
   occ upgrade
   ```
+
+- Get the current configured trusted_proxies
+  ```
+  occ config:system:get trusted_proxies
+  ```

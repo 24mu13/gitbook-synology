@@ -70,8 +70,8 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud_usr
       - MYSQL_PASSWORD_FILE=/run/secrets/db_password
-      - NEXTCLOUD_TRUSTED_DOMAINS=${HOST_NAME} ${HOST_IP}
-      - TRUSTED_PROXIES=${HOST_NAME} ${HOST_IP}
+      - NEXTCLOUD_TRUSTED_DOMAINS=${HOST_NAME}
+      - TRUSTED_PROXIES=${HOST_IP}
       - OVERWRITEHOST=${HOST_NAME}
       - OVERWRITEPROTOCOL=https
       - SMTP_HOST=your.smtp
