@@ -10,6 +10,10 @@
     * [Nextcloud](applications/nextcloud.md)
     * [Home Assistant](applications/home-assistant.md)
 
+## Connectivity
+
+* [DDNS](connectivity/ddns.md)
+
 ## Storage
 
 * [Migrate drives](migrate-drives.md)
