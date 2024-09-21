@@ -9,6 +9,7 @@
     * [Shlink](applications/shlink.md)
     * [Nextcloud](applications/nextcloud.md)
     * [Home Assistant](applications/home-assistant.md)
+        * [Matter Server](application/matter-server.md)
 
 ## Connectivity
 
