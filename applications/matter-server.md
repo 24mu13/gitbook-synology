@@ -6,6 +6,7 @@
 - Execute on shell: `docker pull ghcr.io/home-assistant-libs/python-matter-server:stable`
 - Create new container **matter-server**
     - Enable *auto-restart*
+    - *Network*: **host**
     - *Ports Settings*:
         - Set local port for 5580 on container, e.g. 5580
     - *Volume Settings*:
