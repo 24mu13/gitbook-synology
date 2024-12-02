@@ -38,17 +38,20 @@ so the commands below are simply based on this last one.
 
 ## Convert ext4 to btrfs
 
-At the time being I didn't manage to convert an ext4 drive entirely to btrfs. 
-Feel free to raise a pull-request for any suggestion/idea.
+The only supported way to convert an ext4 volume to btrfs is to backup the data, delete the volume, create a new btrfs volume, and restore the data. See the KB article in the references below.
 
-### Backup & restore (entire system)
+### Backup & Restore
 
-**Note**: this procedure is only theoretical, didn't worked!
-
-- Backup the entire system to C2
-- Power off and replace the old ext4 with a spare new drive
-- Start the NAS and delete the old volume, create the new one with btrfs
-- Restore the system (took 5 days for 2TB, e.g.)
+- Stop **Container Manager**
+- Backup _Folder and Packages_ to C2 (12 hours for 500 GB, 20 MB/s)
+  - **Important**: if you back up the entire system instead, the volume will be recreated as ext4
+  - You need a C2 account and a subscription, the **trial** is fine
+- Delete the current ext4 volume
+  - You may need to completely uninstall **Container Manager**
+- Re-create the volume with btrfs
+- Restore _Folder and Packages_ (3 hours for 500 GB, 100 MB/s)
+  - No need to restore system configurations
+  - **Important**: MariaDB had disabled TCP port and reset to default for me, after restore
 
 ### In-place conversion
 
@@ -73,10 +76,9 @@ WARNING: error during conversion, the original filesystem is not modified
 See also: [btrfs-convert](https://btrfs.readthedocs.io/en/latest/Convert.html)
 
 ## References
-
+- [KB: How do I change an ext4 volume to a Btrfs volume?](https://kb.synology.com/en-my/DSM/tutorial/How_to_change_from_ext4_volume_to_btrfs_volume)
 - [Remove drive from soft RAID](https://unix.stackexchange.com/questions/332061/remove-drive-from-soft-raid)
 - [Can I reduce the number of drives in an existing storage pool or replace the drives with smaller capacity ones?](https://kb.synology.com/en-br/DSM/tutorial/Reduce_RAID_drives)
-- [How do I change an ext4 volume to a Btrfs volume?](https://kb.synology.com/en-my/DSM/tutorial/How_to_change_from_ext4_volume_to_btrfs_volume)
 
 [^1]: Setting a bigger number (e.g. 64K) should make the process faster but you could encounter an error like `No space left on target`
 
