@@ -11,6 +11,11 @@
     * [Home Assistant](applications/home-assistant.md)
         * [Matter Server](applications/matter-server.md)
 
+## Virtual Machine Manager
+
+* [Virtual Machines](vmm/README.md)
+    * [Supervised Home Assistant](vmm/vmm-home-assistant.md)
+
 ## Connectivity
 
 * [DDNS](connectivity/ddns.md)
