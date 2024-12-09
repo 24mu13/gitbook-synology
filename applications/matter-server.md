@@ -1,5 +1,10 @@
 # Matter Server
 
+{% hint style="warning" %}
+Theoretically this guide should work, but as for now [Matter Server](https://github.com/home-assistant-libs/python-matter-server) is not supported on Docker container!
+See paragraph below for more details.
+{% endhint %}
+
 - Create folder `/volume1/docker/matter`
 - Execute on shell: `ln /var/run/docker.sock /volume1/docker/docker.sock -s`
 - **Container Manager**
@@ -14,6 +19,19 @@
         - /docker/docker.sock -> /var/run/docker.sock [^1]
 
 [^1]: In case you can't find the symbolic link, create the container, export it as JSON, change it adding the map, and import it again.
+
+## Issues
+
+### Host network
+
+Matter Server requires to be run on the **host** network, otherwise you get the **Error 0x02000063** when starting Matter.
+
+### IPv6
+
+Matter Server requires **IPv6** to work properly, but Synology DSM does not support it on Docker containers!
+I only managed to get it working for **bridge** network, using [Synology_ContainerManager_IPv6](https://github.com/007revad/Synology_ContainerManager_IPv6) script.
+
+You will get so the **Error 0x02000065** when starting Matter.
 
 ## Assumptions
 

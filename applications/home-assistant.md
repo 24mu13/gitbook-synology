@@ -1,5 +1,9 @@
 # Home Assistant
 
+{% hint style="warning" %}
+This guide is for **Home Assistant Core**. If you want to install **Home Assistant Supervised** on Synology, please refer to the [Virtual Machines Manager](/vmm/vmm-home-assistant.md) section.
+{% endhint %}
+
 - Create folder `/volume1/docker/homeassistant`
 - **Container Manager**
 - Create new image from **homeassistant/home-assistant:latest**
