@@ -5,6 +5,7 @@
 The following is needed when you are unable to connect to your NAS via SSH directly, e.g. **zscaler** that blocks port 22.
 
 ```mermaid
+
 flowchart LR
     subgraph Client 
         ssh["ssh client"]
@@ -17,6 +18,7 @@ flowchart LR
     ssh --> |SSH| stc
     stc --> |SSL/TLS| sts
     sts --> |SSH| sshd
+
 ```
 
 ### NAS
