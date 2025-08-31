@@ -16,6 +16,11 @@
 - Custom Header -> Create -> Web Socket 
 - Enjoy **Immich**
 
+## Assumptions
+
+- You have installed **Container Manager**
+- The folder `/volume1/docker` has been created
+
 ## References
 
 - [Install > Synology [Community]](https://immich.app/docs/install/synology/)
