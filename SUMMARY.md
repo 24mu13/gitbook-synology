@@ -11,6 +11,7 @@
     * [Home Assistant](applications/home-assistant.md)
         * [Matter Server](applications/matter-server.md)
     * [Immich](applications/immich.md)
+    * [Watchtower](applications/watchtower.md)
 
 ## Virtual Machine Manager
 
