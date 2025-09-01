@@ -7,7 +7,7 @@ other than latest, when a new image is available.
 See [this discussion](https://community.synology.com/enu/forum/1/post/161251) for more details.
 {% endhint %}
 
-- Create new image from **nickfedor/watchtower**[^1]
+- Create new image from **nickfedor/watchtower** [^1]
 - Create new container **watchtower**
     - Enable *auto-restart*
     - *Environment*:
