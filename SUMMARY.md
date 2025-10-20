@@ -9,7 +9,6 @@
     * [Shlink](applications/shlink.md)
     * [Nextcloud](applications/nextcloud.md)
     * [Home Assistant](applications/home-assistant.md)
-        * [Matter Server](applications/matter-server.md)
     * [Immich](applications/immich.md)
     * [Watchtower](applications/watchtower.md)
 

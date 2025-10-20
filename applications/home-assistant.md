@@ -19,6 +19,7 @@ This guide is for **Home Assistant Core**. If you want to install **Home Assista
 
 - You have installed **Container Manager**
 - The folder `/volume1/docker` has been created
+- For using **Matter** devices with Home Assistant, you also need to install **Matter Server** from [Synology Community](https://synocommunity.com) packages.
 
 ## References
 
