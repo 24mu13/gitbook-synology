@@ -21,6 +21,7 @@
 
 * [DDNS](connectivity/ddns.md)
 * [SSH](connectivity/ssh.md)
+* [SSL/TLS](connectivity/ssl-tls.md)
 
 ## Storage
 
