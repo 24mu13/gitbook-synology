@@ -23,6 +23,10 @@
 * [SSH](connectivity/ssh.md)
 * [SSL/TLS](connectivity/ssl-tls.md)
 
+## Mail
+
+* [MailPlus Server](mail-server.md)
+
 ## Storage
 
 * [Migrate drives](migrate-drives.md)
