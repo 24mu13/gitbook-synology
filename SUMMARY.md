@@ -4,18 +4,16 @@
 
 ## Container Manager
 
-* [Applications](applications/README.md)    
-    * [Portainer](applications/portainer.md)    
-    * [Shlink](applications/shlink.md)
-    * [Nextcloud](applications/nextcloud.md)
-    * [Home Assistant](applications/home-assistant.md)
-    * [Immich](applications/immich.md)
-    * [Watchtower](applications/watchtower.md)
+* [Portainer](applications/portainer.md)    
+* [Shlink](applications/shlink.md)
+* [Nextcloud](applications/nextcloud.md)
+* [Home Assistant](applications/home-assistant.md)
+* [Immich](applications/immich.md)
+* [Watchtower](applications/watchtower.md)
 
 ## Virtual Machine Manager
 
-* [Virtual Machines](vmm/README.md)
-    * [Supervised Home Assistant](vmm/vmm-home-assistant.md)
+* [Supervised Home Assistant](vmm/vmm-home-assistant.md)
 
 ## Connectivity
 
