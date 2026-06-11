@@ -3,15 +3,7 @@
 - **DNS provider** (e.g. namecheap.com): setup DNS records
   - **A** record: `mail` -> your public IPv4
   - **MX** record: `@` -> `mail.awesome.com` (priority 10)
-  - **TXT (SPF)** at `@`:
-    ```text
-    v=spf1 mx a:mail.awesome.com -all
-    ```
-  - **TXT (DMARC)** at `_dmarc` (start with monitoring):
-
-    ```text
-    v=DMARC1; p=none; rua=mailto:postmaster@awesome.com; adkim=s; aspf=s; fo=1
-    ```
+  - Additional **TXT** records are required for delivery, see the following section
   - (Optional) **AAAA** record: `mail` -> your public IPv6 only if your NAS is truly reachable on IPv6
 
 - **Router**: port forwarding to NAS
@@ -30,46 +22,75 @@
 
 - Install and configure **MailPlus Server**
   - Package Center -> search for MailPlus Server -> Install
-  - Allow relevant ports on firewall (i.e. 993)
+  - Allow relevant ports on firewall (i.e. 25, 465, 993)
   - Disable IMAP/POP3/POP3 SSL/TLS
   - Disable SMTP-STARTTLS
   - Enable user for having the mail account
   - Control Panel -> User & Group
   - Ensure MailPlus Server app is enabled for the user
 
-## Deliverability hardening
+## Delivery
 
-### DKIM
-
-- **MailPlus Server** -> Domain -> edit `awesome.com` -> Advanced (DKIM section)
-- Enable DKIM signing for the domain
-- DKIM selector prefix: default
-- Generate key pair (prefer `2048` if available)
-- **Provider** (e.g. namecheap.com): setup DNS record
-  - **TXT (DKIM)** at `default._domainkey`:
-    ```text
-    v=DKIM1; k=rsa; p=<paste here the public key generated>
-    ```
-
-### DMARC
-
-- Start with `p=none`
-- Move to `p=quarantine` after stable SPF/DKIM pass
-- Move to `p=reject` when confident
-
-### PTR
-
+{% hint style="warning" %}
 Reverse DNS (PTR) should be aligned to the forward DNS.
-
+If PTR is not configurable for your ISP, consider using relay servers instead.
+Use following commands to double check forward and reverse DNS.
 ```bash
 dig +short -x <YOUR_PUBLIC_IP>
 dig +short mail.awesome.com A
 ```
+{% endhint %}
 
-If PTR cannot be enabled:
-- Keep mailbox on DSM
-- Use SMTP relay for outbound only
-- Keep SPF/DKIM/DMARC configured for that relay
+- **SPF**
+  - **DNS provider** (e.g. namecheap.com): set DNS record **TXT** at `@`: `v=spf1 mx a:mail.awesome.com -all`
+- **DMARC**
+  - **DNS provider** (e.g. namecheap.com): set DNS record **TXT** at `_dmarc`: `v=DMARC1; p=none; rua=mailto:postmaster@awesome.com; adkim=s; aspf=s; fo=1`
+  - (Optional) Move to `p=quarantine` after stable SPF/DKIM pass
+  - (Optional) Move to `p=reject` when confident
+- **DKIM**
+  - **MailPlus Server** -> Domain -> edit `awesome.com` -> Advanced (DKIM section)
+    - Enable DKIM signing for the domain
+    - DKIM selector prefix: default
+    - Generate key pair (prefer `2048` if available)
+  - **DNS provider** (e.g. namecheap.com): set DNS record **TXT** at `default._domainkey`: `v=DKIM1; k=rsa; p=<paste here the public key generated>`
+
+### Relay Server (Azure)
+
+- Communication Services -> Create
+  - Set name and region, e.g. `acs-awesome`
+- Email Communication Services -> Create
+  - Set name and same region as before, e.g. `acs-awesome-email`
+  - Provision domains -> Add domain -> Custom domain
+    - Enter domain name, e.g. `awesome.com`
+    - Initiate the verification process
+    - **DNS provider** (e.g. namecheap.com): set DNS record **TXT** at `@`: `<domain verification value from azure>`
+    - Azure also provides SPF (**TXT** at `@`) and DKIM/DKIM2 (**CNAME** records): add all of them
+      
+      Note: if you already have an SPF record at `@`, merge the Azure include into it rather than adding a second TXT, e.g. `v=spf1 mx a:mail.awesome.com include:spf.protection.outlook.com -all`
+- Entra ID -> App registrations -> New registration
+  - Name it, e.g. `acs-smtp-synology`
+  - Register
+  - Create a secret and note it down
+- Communication Services -> Access control (IAM) -> Add role assignment
+  - Select role _Communication and Email Service Owner_
+  - Select app registration created before, e.g. `acs-smtp-synology`
+- Communication Services -> Email -> SMTP Username -> Add SMTP Username
+  - Entra Application: e.g. `acs-smtp-synology`
+  - Username type: Email
+  - Username: e.g. `relay@awesome.com`
+- Communication Services -> Email -> Domains -> `awesome.com` -> Email services -> MailFrom Addresses
+  - Add your accounts, e.g. `samuel@awesome.com`
+
+    Note: if you are unable to add the MailFrom using the portal, use the following command:
+    `az communication email domain sender-username create --email-service-name acs-awesome-email --resource-group rg-awesome --domain-name awesome --sender-username samuel --username samuel --display-name Samuel`
+
+- **MailPlus Server** -> Mail Delivery -> Relay Settings
+  - Check _Send emails through relay servers_
+  - Server List -> Add
+    - Server: `smtp.azurecomm.net` (verify in Azure portal: Communication Services -> Settings -> SMTP)
+    - Port: 587
+    - Username: SMTP username created above, e.g. `relay@awesome.com`
+    - Password: client secret
 
 ## Client Settings
 
@@ -86,11 +107,11 @@ If PTR cannot be enabled:
 
 ## Assumptions
 
-- Domain on Namecheap BasicDNS (e.g. `awesome.com`)
 - Router access for port forwarding
 - Dedicated mail host name (recommended): `mail.awesome.com`
-- ISP allows outbound `25/tcp`
-- PTR (reverse DNS) can be configured for your public IP
+- (For selfhosted delivery)
+  - ISP allows outbound `25/tcp`
+  - PTR (reverse DNS) can be configured for your public IP
 
 ## References
 - [Synology MailPlus License Pack](https://www.synology.com/en-global/products/MailPlus_License)
