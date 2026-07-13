@@ -2,13 +2,14 @@
 
 * [Synology Notes](README.md)
 
-## Container Manager
+## [Container Manager](applications/README.md)
 
-* [Portainer](applications/portainer.md)    
-* [Shlink](applications/shlink.md)
-* [Nextcloud](applications/nextcloud.md)
 * [Home Assistant](applications/home-assistant.md)
 * [Immich](applications/immich.md)
+* [LinkStack](applications/linkstack.md)
+* [Nextcloud](applications/nextcloud.md)
+* [Portainer](applications/portainer.md)    
+* [Shlink](applications/shlink.md)
 * [Watchtower](applications/watchtower.md)
 
 ## Virtual Machine Manager
