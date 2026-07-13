@@ -2,19 +2,21 @@
 
 * [Synology Notes](README.md)
 
-## [Container Manager](applications/README.md)
+## Container Manager
 
-* [Home Assistant](applications/home-assistant.md)
-* [Immich](applications/immich.md)
-* [LinkStack](applications/linkstack.md)
-* [Nextcloud](applications/nextcloud.md)
-* [Portainer](applications/portainer.md)    
-* [Shlink](applications/shlink.md)
-* [Watchtower](applications/watchtower.md)
+* [Applications](applications/README.md)
+    * [Home Assistant](applications/home-assistant.md)
+    * [Immich](applications/immich.md)
+    * [LinkStack](applications/linkstack.md)
+    * [Nextcloud](applications/nextcloud.md)
+    * [Portainer](applications/portainer.md)    
+    * [Shlink](applications/shlink.md)
+    * [Watchtower](applications/watchtower.md)
 
 ## Virtual Machine Manager
 
-* [Supervised Home Assistant](vmm/vmm-home-assistant.md)
+* [Virtual Machines](vmm/README.md)
+    * [Supervised Home Assistant](vmm/vmm-home-assistant.md)
 
 ## Connectivity
 
