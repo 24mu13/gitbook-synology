@@ -6,7 +6,7 @@ but the process should be similar for other registrars.
 ## Activate/renew certificate
 
 First you need to get a CSR (Certificate Signing Request) from DSM, e.g. for renewal:
-- Control Panel → Security → Certificate
+- Control Panel -> Security -> Certificate
 - Click on **Renew**
 - Copy the CSR (Certificate Signing Request)
 
@@ -14,12 +14,12 @@ See: [Domain & CSR code setup for Synology NAS](https://www.namecheap.com/suppor
 
 ### Registrar (i.e. namecheap.com)
 
-- SSL Certificates → Manage
+- SSL Certificates -> Manage
 - Click on **Activate**/**Reissue**
 - Paste the CSR got from DSM (above)
 - Choose CNAME record add
 - Get the record name and value
-- Domains List → Domain → Advanced DNS
+- Domains List -> Domain -> Advanced DNS
 - Add CNAME record
   - *Host*: copy ID here without the suffix ".<domain>"
   - *IP Address*: copy host here replacing ".comodoca.com" with ".sectigo.com"
@@ -28,7 +28,7 @@ See: [Steps to get the SSL certificate activated](https://www.namecheap.com/supp
 
 ### DSM
 
-- Control Panel → Security → Certificates
+- Control Panel -> Security -> Certificates
 - Select **Add**/**Replace**
 - Import certificate
   - From **archive.zip** downloaded when generating CSR:

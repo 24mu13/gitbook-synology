@@ -24,13 +24,13 @@ Instead, by using the commands below, you will achieve same result.
 - ~~Create new container **linkstack**~~
     - ~~Enable *auto-restart*~~
     - ~~*Ports Settings*:~~
-        - ~~Set a local port for 443, e.g. 8190 (host port) → 443 (container port)~~
+        - ~~Set a local port for 443, e.g. 8190 (host port) -> 443 (container port)~~
     - ~~*Volume Settings* (optional, for persistence):~~
         - ~~Mount container path `/htdocs` to a NAS shared folder (e.g. `/volume1/docker/linkstack`)~~
     - ~~*Environment*~~:
         - ~~TZ=Europe/Rome (or your timezone)~~
-- Control Panel → Login Portal → Advanced → Reverse Proxy
-- Create a new proxy for LinkStack root path, e.g. https://your.domain → https://127.0.0.1:8190
+- Control Panel -> Login Portal -> Advanced -> Reverse Proxy
+- Create a new proxy for LinkStack root path, e.g. https://your.domain -> https://127.0.0.1:8190
 
 ## Assumptions
 
