@@ -22,6 +22,7 @@
 
 * [DDNS](connectivity/ddns.md)
 * [SSH](connectivity/ssh.md)
+* [Web Proxy](connectivity/proxy.md)
 * [SSL/TLS](connectivity/ssl-tls.md)
 
 ## Mail
