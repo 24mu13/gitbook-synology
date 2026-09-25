@@ -131,6 +131,21 @@ You can use of course the regular _Synology_ package for MariaDB.
 
 In this case just remove the **db** service/section in the **docker-compose.yml** file above and set accordingly MYSQL_HOST variable.
 
+{% hint style="information" %}
+When using Nextcloud 35 or greater together with DSM 7.1
+you could experience few warnings on database; to fix those 
+create or change `/var/packages/MariaDB10/etc/my.cnf` 
+by making sure to have the following values.
+{% endhint %}
+
+```ini
+[mysqld]
+max_allowed_packet = 64M
+long_query_time = 2
+slow_query_log = ON
+innodb_log_file_size = 256M
+```
+
 ### Variant: Shared folder on DSM
 
 You can use a regular folder on your NAS.
