@@ -33,6 +33,11 @@
 * [Migrate drives](migrate-drives.md)
 * [Share NFS folder](share-nfs-folder.md)
 
+## Offline Resilience
+
+* [Overview](offline/README.md)
+    * [Protomaps](offline/protomaps.md)
+
 ## Appendix
 
 * [A. DSM CLI](dsm-cli.md)
