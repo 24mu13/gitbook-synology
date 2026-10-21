@@ -9,6 +9,7 @@
     * [Immich](applications/immich.md)
     * [LinkStack](applications/linkstack.md)
     * [Nextcloud](applications/nextcloud.md)
+    * [Nextcloud AIO](applications/nextcloud-aio.md)
     * [Portainer](applications/portainer.md)    
     * [Shlink](applications/shlink.md)
     * [Watchtower](applications/watchtower.md)
