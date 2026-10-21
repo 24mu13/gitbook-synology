@@ -30,8 +30,8 @@ flowchart LR
     [ssh]
     accept = 0.0.0.0:443
     connect = 127.0.0.1:22
-    cert = /etc/stunnel/stunnel.pem
-    key = /etc/stunnel/stunnel.key
+    cert = /var/packages/stunnel/target/etc/stunnel/stunnel.pem
+    key = /var/packages/stunnel/target/etc/stunnel/stunnel.key
     ```
   - Create a self-signed certificate:
     ```bash
@@ -39,7 +39,7 @@ flowchart LR
     cat stunnel.key >> stunnel.pem
     chmod 600 stunnel.key
     ```
-  - Ensure all files are owned by `sc-stunnel:sc-stunnel`
+  - Ensure all files are owned by `sc-stunnel:synocommunity`
   - Control Panel > Task Scheduler > Create > Scheduled Task > **User-defined script**
     - General -> Name: `stunnel`
     - General -> User: `root`
